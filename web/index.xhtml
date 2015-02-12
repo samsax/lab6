@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h1>Add a new movie</h1>
+        
+        <h:form>
+            Titulo Pelicula: <h:inputText value="#{movie.name}" /><br/>
+            Año: <h:inputText value="#{movie.year}" /><br/>
+            idioma: <h:inputText value="#{movie.language}" /><br/>
+            
+            <h:commandButton actionListener="#{movieSessionBean.createMovie()}"
+                             action="show"
+                             title="Add"
+                             value="Insertar"/>
+            <p/>
+            <p/>
+            <h:commandButton actionListener="#{movieSessionBean.getMovie(movie.name)}"
+                             title="find"
+                             value="Buscar por nombre"/>
+            <f:view>
+                <h:form>
+                    <h:dataTable value="#{movieSessionBean.getMovie(movie.name)}" var="m"
+                        styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+                  
+                 <h:column><f:facet name="header">Titulo </f:facet>#{m.name}</h:column>
+                <h:column><f:facet name="header">Año </f:facet>#{m.year}</h:column>
+                <h:column><f:facet name="header">Idioma </f:facet>#{m.language}</h:column>
+                    </h:dataTable>
+                </h:form>
+            </f:view>
+            
+            
+        </h:form>
+    </h:body>
+</html>
+
